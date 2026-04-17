@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Jiyudi ❤️</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom right, #ffd6e0, #fff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  text-align: center;
+}
+
+.container {
+  max-width: 400px;
+  padding: 20px;
+}
+
+button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 25px;
+  background-color: #ff6b81;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 10px;
+  transition: transform 0.2s ease;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+.hidden {
+  display: none;
+}
+
+.fade {
+  animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+.heart {
+  position: absolute;
+  color: #ff6b81;
+  font-size: 20px;
+  animation: floatUp 4s linear infinite;
+}
+
+@keyframes floatUp {
+  0% {transform: translateY(100vh); opacity: 1;}
+  100% {transform: translateY(-10vh); opacity: 0;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎵 LOCAL MUSIC -->
+<audio id="bgm" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container">
+
+  <!-- Screen 1 -->
+  <div id="screen1" class="fade">
+    <h1>Happy 1 Month ❤️</h1>
+    <p>To Meri Jaan ❤️</p>
+    <button onclick="startMusic(); nextScreen(1)">Click me</button>
+  </div>
+
+  <!-- Screen 2 -->
+  <div id="screen2" class="hidden">
+    <h2>Hi Jaanu 💕</h2>
+    <p>
+      Humara saath hone ka sirf ek hi mahina hua hai, lekin tu mere liye sab kuch hai ❤️ <br>
+      Tere saath baat karna mera har din ka sabse pasandida hissa hai 🥰😘
+    </p>
+    <button onclick="nextScreen(2)">Next</button>
+  </div>
+
+  <!-- Screen 3 -->
+  <div id="screen3" class="hidden">
+    <h2>Our Moments 😁</h2>
+    <p>
+      All our laughs, talks, and memories…  
+      and of course:
+      <br><br>
+      <b>Bread ko chai mein dubana 😘</b>
+    </p>
+    <button onclick="nextScreen(3)">Next</button>
+  </div>
+
+  <!-- Screen 4 -->
+  <div id="screen4" class="hidden">
+    <h2>One Question 👀</h2>
+    <p>Pyaar karti ho mujhse?</p>
+
+    <button onclick="yesLove()">Haanji 🥰</button>
+    <button id="noBtn" onclick="noResponse()">Nahi 🙈</button>
+  </div>
+
+  <!-- Screen 5 -->
+  <div id="screen5" class="hidden">
+    <h2>Hehe I knew it ❤️</h2>
+    <p>
+      This is just month one…  
+      imagine the rest 🥺💕
+    </p>
+  </div>
+
+</div>
+
+<script>
+
+function nextScreen(num) {
+  document.getElementById("screen" + num).classList.add("hidden");
+  let next = document.getElementById("screen" + (num + 1));
+  next.classList.remove("hidden");
+  next.classList.add("fade");
+}
+
+function startMusic() {
+  let music = document.getElementById("bgm");
+  music.volume = 0.4;
+  music.play();
+}
+
+let noMessages = [
+  "Really? 🥺",
+  "You're meany pants 😕",
+  "You don't love me? 🥺",
+  "I'm sed 😔",
+  "Try again 😭",
+  "That hurt a little... 💔",
+  "The correct answer is over there ⬆️"
+];
+
+function noResponse() {
+  let btn = document.getElementById("noBtn");
+  btn.innerText = noMessages[Math.floor(Math.random() * noMessages.length)];
+}
+
+function yesLove() {
+  document.getElementById("screen4").classList.add("hidden");
+  let next = document.getElementById("screen5");
+  next.classList.remove("hidden");
+  next.classList.add("fade");
+  startHearts();
+}
+
+function startHearts() {
+  setInterval(() => {
+    let heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, 4000);
+  }, 300);
+}
+
+</script>
+
+</body>
+</html>
